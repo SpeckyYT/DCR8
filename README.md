@@ -1,6 +1,6 @@
 # DCR8
 
-The DCR8 project is a collection of decoration scrips for SPWN.
+The DCR8 project is a collection of decoration scripts for SPWN.
 
 ## Contributions
 
