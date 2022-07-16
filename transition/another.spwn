@@ -1,0 +1,38 @@
+// INSPIRED BY LEVEL: "Another Mycop" by 5ta1ker
+
+extract obj_props
+
+// constants
+rows = 10
+x_offset = 30 * 45
+y_offset = 15
+x_distance = 30
+y_distance = 30
+rotation = 45
+init_scale = 0.01
+max_scale = $.sin(rotation * PI / 180).abs() + $.cos(rotation * PI / 180).abs() // thanks kr8gz my beloved
+length = 50
+group = ?g
+
+// required objects
+for i in 0..length {
+    x = x_offset + i * 30
+    scaling = init_scale + (i+1) * (max_scale - init_scale) / length
+    for h in 0..rows {
+        y = y_offset + h * 30
+        $.add(obj {
+            OBJ_ID: 211,
+            X: x,
+            Y: y,
+            ROTATION: rotation,
+            GROUPS: [group],
+            SCALING: scaling,
+        })
+    }
+}
+
+// required triggers
+-> group.lock_to_player(lock_x = true, lock_y = false)
+-> while_loop(() => true, () {
+    -> group.move(-x_distance/3, 0, 0)
+}, delay = 1/30)
